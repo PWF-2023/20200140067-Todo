@@ -31,10 +31,11 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/todo', [App\Http\Controllers\TodoController::class, 'index'])->name('todo.index');
-    Route::get('/todo/create', [App\Http\Controllers\TodoController::class,'create'])->name('todo.create');
-    Route::get('/todo/edit', [App\Http\Controllers\TodoController::class,'edit'])->name('todo.edit');
+    Route::post('/todo', [App\Http\Controllers\TodoController::class, 'store'])->name('todo.store');
+    Route::get('/todo/create', [App\Http\Controllers\TodoController::class, 'create'])->name('todo.create');
+    Route::get('/todo/edit', [App\Http\Controllers\TodoController::class, 'edit'])->name('todo.edit');
 
-    Route::get('/user', [App\Http\Controllers\UserController::class,'index'])->name('user.index');
+    Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('user.index');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
