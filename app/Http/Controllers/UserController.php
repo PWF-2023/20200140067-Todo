@@ -17,11 +17,13 @@ class UserController extends Controller
             })
                 ->orderBy('name')
                 ->where('id', '!=', '1')
+                //->Simplepaginate(20)
                 ->paginate(20)
                 ->withQueryString();
         } else {
             $users = User::with('todos')->where('id', '!=', '1')
                 ->orderBy('name')
+                //->Simplepaginate(10);
                 ->paginate(10);
         }
         return view('user.index', compact('users'));

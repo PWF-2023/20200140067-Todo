@@ -22,16 +22,21 @@ class TodoController extends Controller
         return view('todo.create');
     }
 
+
     public function store(Request $request, Todo $todo)
     {
         $request->validate([
             'title' => 'required|max:255',
         ]);
 
-        $todo = Todo::create([
+        //@request->user()->todos()->create($request->all())
+        $request->user()->todos()->create([
             'title' => ucfirst($request->title),
-            'user_id' => auth()->user()->id,
         ]);
+        // $todo = Todo::create([
+        //     'title' => ucfirst($request->title),
+        //     'user_id' => auth()->user()->id,
+        // ]);
         return redirect()->route('todo.index')->with('success', 'Todo created successfully!');
     }
     public function edit()
